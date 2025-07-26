@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetails } from "../../lib/Details.slice";
+import { getDetails } from "../../lib/details.slice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
