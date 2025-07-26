@@ -55,7 +55,7 @@ export default function Home() {
                 <p className="mt-2">
                   {activeMovie.overview?.split(" ").slice(0, 10).join(" ")}
                 </p>
-                <div className="flex justify-between  my-2 ">
+                <div className="flex justify-between flex-wrap gap-y-2 my-2 ">
                   <p className="flex text-yellow-400 text-lg">
                     {[...Array(5)].map((_, i) => (
                       <span key={i}>
