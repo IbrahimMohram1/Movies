@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 export default function Pagination({ pageCount, currentPage, onPageChange }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 576); // Bootstrap's sm breakpoint
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
   return (
     <>
-      <div>
-        <ReactPaginate
-          previousLabel={"Prev"}
-          nextLabel={"Next"}
-          pageCount={pageCount}
-          forcePage={currentPage}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={7}
-          onPageChange={onPageChange}
-          containerClassName={"pagination"}
-          activeClassName={"active"}
-          pageClassName={"page-item"}
-          pageLinkClassName={"page-link"}
-          previousClassName={"page-item"}
-          previousLinkClassName={"page-link"}
-          nextClassName={"page-item"}
-          nextLinkClassName={"page-link"}
-          breakClassName={"page-item"}
-          breakLinkClassName={"page-link"}
-        />
-      </div>
+      <ReactPaginate
+        previousLabel={"Prev"}
+        nextLabel={"Next"}
+        pageCount={pageCount}
+        forcePage={currentPage}
+        marginPagesDisplayed={isMobile ? 1 : 2}
+        pageRangeDisplayed={isMobile ? 2 : 5}
+        onPageChange={onPageChange}
+        containerClassName={"pagination"}
+        activeClassName={"active"}
+      />
     </>
   );
 }

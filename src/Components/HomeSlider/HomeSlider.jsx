@@ -18,7 +18,6 @@ export default function HomeSlider({ movies, setActiveMovie }) {
       <Swiper
         className="h-full"
         spaceBetween={15}
-        slidesPerView={3}
         effect={"coverflow"}
         modules={[EffectCoverflow, Autoplay]}
         centeredSlides={true}
@@ -28,6 +27,17 @@ export default function HomeSlider({ movies, setActiveMovie }) {
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
         }}
         onSlideChange={(swiper) => {
           const currentIndex = swiper.activeIndex;

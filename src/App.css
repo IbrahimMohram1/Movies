@@ -6,30 +6,51 @@
   
 }
 
-
+body{
+  background-color: oklch(21% 0.034 264.665);
+  color: #fff;
+}
 .pagination {
   display: flex;
   list-style: none;
   padding: 0;
   justify-content: center;
   margin-top: 20px;
+  flex-wrap: wrap;
+  /* مهم للموبايل */
+  gap: 6px;
+  /* بدل margin li */
 }
 
-.pagination li {
-  margin: 0 5px;
-}
 
 .pagination li a {
   cursor: pointer;
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  color: #0070f3;
+  color: oklch(74% 0.238 322.16);
   text-decoration: none;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination li a:hover {
+  background-color: #f0f0f0;
 }
 
 .pagination li.active a {
-  background-color: #0070f3;
+  background-color: oklch(74% 0.238 322.16);
   color: white;
-  border-color: #0070f3;
+  border-color: oklch(74% 0.238 322.16);
+}
+.active{
+  color: oklch(74% 0.238 322.16);
+}
+
+/* 🎯 Responsive styles for small screens */
+@media (max-width: 576px) {
+  .pagination li a {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
 }

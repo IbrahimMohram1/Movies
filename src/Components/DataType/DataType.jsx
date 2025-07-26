@@ -20,29 +20,31 @@ export default function DataType({ type }) {
   }, []);
   return (
     <>
-      <div className="flex flex-wrap justify-center items-center  my-5">
-        {data.results?.map((item) => {
-          if (!item.backdrop_path) return null;
-          return (
-            <Link
-              to={`/${type}/${item.id}`}
-              className=" md:w-1/4 w-full p-2"
-              key={item.id}
-            >
-              <div>
-                <img
-                  loading="lazy"
-                  src={`https://image.tmdb.org/t/p/w780/${item.backdrop_path}`}
-                />
-              </div>
-            </Link>
-          );
-        })}
-        <Pagination
-          pageCount={data.total_pages}
-          currentPage={page - 1}
-          onPageChange={(e) => handlePageChange(e.selected + 1)}
-        />
+      <div className="container max-w-7xl mx-auto">
+        <div className="flex flex-wrap justify-center items-center  my-5">
+          {data.results?.map((item) => {
+            if (!item.backdrop_path) return null;
+            return (
+              <Link
+                to={`/${type}/${item.id}`}
+                className=" md:w-1/4 w-full p-2"
+                key={item.id}
+              >
+                <div>
+                  <img
+                    loading="lazy"
+                    src={`https://image.tmdb.org/t/p/w780/${item.backdrop_path}`}
+                  />
+                </div>
+              </Link>
+            );
+          })}
+          <Pagination
+            pageCount={data.total_pages}
+            currentPage={page - 1}
+            onPageChange={(e) => handlePageChange(e.selected + 1)}
+          />
+        </div>
       </div>
     </>
   );

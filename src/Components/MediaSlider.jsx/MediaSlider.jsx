@@ -9,10 +9,21 @@ export default function MediaSlider({ type, data = [] }) {
       <Swiper
         className="px-5"
         spaceBetween={20}
-        slidesPerView={7}
+        slidesPerView={2}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 7,
+          },
         }}
         modules={[Autoplay]}
       >

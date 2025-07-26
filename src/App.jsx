@@ -13,6 +13,8 @@ import Series from "./Components/Series/Series";
 import MovieDetails from "./Components/MovieDetails/MovieDetails";
 import SeriesDetails from "./Components/SeriesDetails/SeriesDetails";
 import CharDetails from "./Components/CharDetails/CharDetails";
+import AllCharactor from "./Components/AllCharactor/AllCharactor";
+import NotFoundPage from "./Components/NotFoundPage/NotFoundPage";
 
 let Router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ let Router = createBrowserRouter([
       {
         path: "person/:id",
         element: <CharDetails />,
+      },
+      {
+        path: "charactor",
+        element: <AllCharactor />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

@@ -33,100 +33,124 @@ export default function DetailsData({ type, id }) {
               backgroundImage: `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`,
             }}
           ></div>
-          <div className="flex flex-wrap flex-col justify-start items-start p-5 w-[80%] gap-y-3">
-            <h2>{details.original_title}</h2>
-            <p>{details.overview}</p>
-            <p className="text-3xl">Genres</p>
+          <div className="container max-w-7xl mx-auto">
+            <div className="flex flex-wrap flex-col justify-start items-start p-5 w-[80%] gap-y-3">
+              <h2>{details.original_title}</h2>
+              <p>{details.overview}</p>
+              <p className="text-3xl">Genres</p>
 
-            <div className="flex flex-wrap gap-4  items-center justify-center my-2">
-              {details.genres?.length > 0 &&
-                details.genres.map((genre) => (
-                  <p
-                    className=" className={`text-xs  py-2 px-6 border border-fuchsia-400 rounded-lg bg-fuchsia-400 text-white"
-                    key={genre.id}
-                  >
-                    {genre.name}
-                  </p>
-                ))}
+              <div className="flex flex-wrap gap-4  items-center justify-center my-2">
+                {details.genres?.length > 0 &&
+                  details.genres.map((genre) => (
+                    <p
+                      className=" className={`text-xs  py-2 px-6 border border-fuchsia-400 rounded-lg bg-fuchsia-400 text-white"
+                      key={genre.id}
+                    >
+                      {genre.name}
+                    </p>
+                  ))}
+              </div>
             </div>
-          </div>
-          <div className="p-5">
-            <h2 className="text-3xl">Casts</h2>
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={7}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay]}
-            >
-              {cast.map((item) => {
-                if (!item.profile_path) return null;
+            <div className="p-5">
+              <h2 className="text-3xl">Casts</h2>
+              <Swiper
+                spaceBetween={30}
+                slidesPerView={2}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                  },
+                  1024: {
+                    slidesPerView: 7,
+                  },
+                }}
+                modules={[Autoplay]}
+              >
+                {cast.map((item) => {
+                  if (!item.profile_path) return null;
 
-                return (
-                  <SwiperSlide className="mb-12">
-                    <img
-                      className="w-[180px] h-[180px] rounded-full object-cover"
-                      loading="lazy"
-                      src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
-                      alt={item.name}
-                    />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-          <div className="p-5">
-            <h2 className="text-3xl">Crew</h2>
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={7}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay]}
-            >
-              {}
-              {crew.map((item) => {
-                if (!item.profile_path) return null;
+                  return (
+                    <SwiperSlide className="mb-12">
+                      <img
+                        className="w-[180px] h-[180px] rounded-full object-cover"
+                        loading="lazy"
+                        src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
+                        alt={item.name}
+                      />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
+            <div className="p-5">
+              <h2 className="text-3xl">Crew</h2>
+              <Swiper
+                spaceBetween={30}
+                slidesPerView={2}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                  },
+                  1024: {
+                    slidesPerView: 7,
+                  },
+                }}
+                modules={[Autoplay]}
+              >
+                {}
+                {crew.map((item) => {
+                  if (!item.profile_path) return null;
 
-                return (
-                  <SwiperSlide className="mb-12">
-                    <img
-                      loading="lazy"
-                      className="w-[180px] h-[180px] rounded-full object-cover"
-                      src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
-                      alt={item.name}
-                    />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-          <h2 className="text-3xl p-5">{`Similar ${type}`} </h2>
-
-          <div className="flex justify-center items-center flex-wrap">
-            {similar &&
-              similar?.map((item) => {
-                if (!item.backdrop_path) return null;
-
-                return (
-                  <Link
-                    to={`/${type}/${item.id}`}
-                    className=" md:w-1/4 w-full p-2"
-                    key={item.id}
-                  >
-                    <div>
+                  return (
+                    <SwiperSlide className="mb-12">
                       <img
                         loading="lazy"
-                        src={`https://image.tmdb.org/t/p/w780/${item.backdrop_path}`}
+                        className="w-[180px] h-[180px] rounded-full object-cover"
+                        src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
+                        alt={item.name}
                       />
-                    </div>
-                  </Link>
-                );
-              })}
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
+            <h2 className="text-3xl p-5">{`Similar ${type}`} </h2>
+
+            <div className="flex justify-center items-center flex-wrap">
+              {similar &&
+                similar?.map((item) => {
+                  if (!item.backdrop_path) return null;
+
+                  return (
+                    <Link
+                      to={`/${type}/${item.id}`}
+                      className=" md:w-1/4 w-full p-2"
+                      key={item.id}
+                    >
+                      <div>
+                        <img
+                          loading="lazy"
+                          src={`https://image.tmdb.org/t/p/w780/${item.backdrop_path}`}
+                        />
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
           </div>
         </>
       )}

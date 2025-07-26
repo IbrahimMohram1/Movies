@@ -12,6 +12,7 @@ import MoviesByGenre from "../MoviesByGenre/MoviesByGenre";
 import { getMoviesByGenre } from "../../lib/moviesByListSlice";
 import ListComponent from "../ListComponent/ListComponent";
 import Charactor from "../Charactor/Charactor";
+import { FaRegStar, FaStar } from "react-icons/fa";
 const type = "movie"; // أو "tv" لو عايز تجرب المسلسلات
 
 export default function Home() {
@@ -52,10 +53,20 @@ export default function Home() {
                   {activeMovie.original_title}
                 </h2>
                 <p className="mt-2">
-                  {activeMovie.overview?.split(" ").slice(0, 20).join(" ")}
+                  {activeMovie.overview?.split(" ").slice(0, 10).join(" ")}
                 </p>
-                <div className="flex justify-around  my-2 ">
-                  <p>Vote : {activeMovie.vote_average}</p>
+                <div className="flex justify-between  my-2 ">
+                  <p className="flex text-yellow-400 text-lg">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>
+                        {i < Math.round(activeMovie.vote_average / 2) ? (
+                          <FaStar />
+                        ) : (
+                          <FaRegStar />
+                        )}
+                      </span>
+                    ))}
+                  </p>{" "}
                   <p>Vote Count : {activeMovie.vote_count}</p>
                 </div>
                 <p>
@@ -82,21 +93,22 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="container max-w-7xl mx-auto">
+        <Title title="Top Rated Movies" link="/movies" />
 
-      <Title title="Top Rated Movies" link="/movies" />
+        <TopRated type="movie" />
 
-      <TopRated type="movie" />
+        <Title title="Movies" link="/movies" />
+        <ListComponent type="movie" />
+        <MoviesByGenre genreId="28" type="movie" />
+        <Title title="Series" link="/series" />
 
-      <Title title="Movies" link="/movies" />
-      <ListComponent type="movie" />
-      <MoviesByGenre genreId="28" type="movie" />
-      <Title title="Series" link="/series" />
+        <ListComponent type="tv" />
+        <MoviesByGenre genreId="10759" type="tv" />
 
-      <ListComponent type="tv" />
-      <MoviesByGenre genreId="10759" type="tv" />
-
-      <Title title="Charactors" link="/charactor" />
-      <Charactor />
+        <Title title="Charactors" link="/charactor" />
+        <Charactor />
+      </div>
     </>
   );
 }
