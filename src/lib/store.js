@@ -4,7 +4,7 @@ import {  topRatedReducer } from "./topRatedSlice";
 import { listReducer } from "./listSlice";
 import {MovieByGenreReducer} from './moviesByListSlice'
 import { charactorReducer } from "./charactorSlice";
-import { detailsReducer } from "./Details.slice";
+import { detailsReducer } from "./details.slice";
 import { charactorDetailsReducer } from "./charactorDetailsSlice";
 export let store = configureStore({
     reducer: {
