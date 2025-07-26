@@ -1,0 +1,9 @@
+.homeSlider :global(.coverflow-slide) {
+    border-radius: 12px;
+    background: #000;
+}
+
+.homeSlider :global(.swiper-slide-active) {
+    transform: scale(1.2);
+    border-radius: 15px;
+}
