@@ -33,7 +33,7 @@ export default function MediaSlider({ type, data = [] }) {
             <SwiperSlide key={item.id}>
               <Link to={`/${type}/${item.id}`}>
                 <img
-                  className="h-full  object-cover rounded-xl"
+                  className="md:h-full  h-[300px] object-cover rounded-xl"
                   src={`https://image.tmdb.org/t/p/w780/${item.poster_path}`}
                   alt={item.original_title}
                 />

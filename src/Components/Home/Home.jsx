@@ -37,16 +37,16 @@ export default function Home() {
   return (
     <>
       <div
-        className="h-screen object-center bg-cover bg-center transition-all duration-700"
+        className="h-screen bg-cover bg-center transition-all duration-700"
         style={{
           backgroundImage: activeMovie
             ? `url(https://image.tmdb.org/t/p/original${activeMovie.backdrop_path})`
             : "none",
         }}
       >
-        {" "}
-        <div className="w-[75%] h-[75%] flex justify-start items-end  mx-auto">
-          <div className="w-[50%] text-white bg-black/35  p-6 rounded-md">
+        <div className="container mx-auto h-full flex flex-col md:flex-row md:justify-end justify-center items-center md:items-end p-4 md:p-0">
+          {/* النصوص */}
+          <div className="bg-black/35 text-white rounded-md p-6 md:w-1/2 w-full mb-6 md:mb-0">
             {activeMovie ? (
               <>
                 <h2 className="text-3xl font-bold">
@@ -55,7 +55,7 @@ export default function Home() {
                 <p className="mt-2">
                   {activeMovie.overview?.split(" ").slice(0, 10).join(" ")}
                 </p>
-                <div className="flex justify-between flex-wrap gap-y-2 my-2 ">
+                <div className="flex justify-between flex-wrap gap-y-2 my-2">
                   <p className="flex text-yellow-400 text-lg">
                     {[...Array(5)].map((_, i) => (
                       <span key={i}>
@@ -66,7 +66,7 @@ export default function Home() {
                         )}
                       </span>
                     ))}
-                  </p>{" "}
+                  </p>
                   <p>Vote Count : {activeMovie.vote_count}</p>
                 </div>
                 <p>
@@ -75,24 +75,25 @@ export default function Home() {
                     {activeMovie.original_language}
                   </span>
                 </p>
-                {activeMovie && (
-                  <Link
-                    to={`/movie/${activeMovie.id}`}
-                    className="inline-block mt-4 px-4 py-2 border rounded-md"
-                  >
-                    More Info
-                  </Link>
-                )}
+                <Link
+                  to={`/movie/${activeMovie.id}`}
+                  className="inline-block mt-4 px-4 py-2 border rounded-md"
+                >
+                  More Info
+                </Link>
               </>
             ) : (
               <h2>Loading movie...</h2>
             )}
           </div>
-          <div className="w-[50%] h-[50%] ml-16">
+
+          {/* السلايدر */}
+          <div className="md:w-1/2 w-1/2 h-[250px] md:h-[400px] ml-0 md:ml-16">
             <HomeSlider movies={allMovies} setActiveMovie={setActiveMovie} />
           </div>
         </div>
       </div>
+
       <div className="container max-w-7xl mx-auto">
         <Title title="Top Rated Movies" link="/movies" />
 
