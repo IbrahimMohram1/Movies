@@ -21,6 +21,7 @@ export default function HomeSlider({ movies, setActiveMovie }) {
         effect={"coverflow"}
         modules={[EffectCoverflow, Autoplay]}
         centeredSlides={true}
+        slidesPerView={2}
         coverflowEffect={{
           rotate: 0,
         }}
@@ -30,7 +31,7 @@ export default function HomeSlider({ movies, setActiveMovie }) {
         }}
         breakpoints={{
           640: {
-            slidesPerView: 1,
+            slidesPerView: 2,
           },
           768: {
             slidesPerView: 2,
