@@ -48,7 +48,7 @@ export default function HomeSlider({ movies, setActiveMovie }) {
         {movies?.map((movie) => (
           <SwiperSlide key={movie.id} className="w-full">
             <img
-              className="h-[200px] md:h-full  object-cover rounded-xl"
+              className="h-[250px] md:h-full  object-cover rounded-xl"
               src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
               alt={movie.original_title}
             />

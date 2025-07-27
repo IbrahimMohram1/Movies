@@ -88,7 +88,7 @@ export default function Home() {
           </div>
 
           {/* السلايدر */}
-          <div className="md:w-1/2 w-1/2 h-[250px] md:h-[400px] ml-0 md:ml-16">
+          <div className="md:w-1/2 w-full h-[250px] md:h-[400px] ml-0 md:ml-16">
             <HomeSlider movies={allMovies} setActiveMovie={setActiveMovie} />
           </div>
         </div>
