@@ -44,7 +44,7 @@ export default function Home() {
             : "none",
         }}
       >
-        <div className="container mx-auto h-full flex flex-col md:flex-row md:justify-end justify-center items-center md:items-end p-4 md:p-0">
+        <div className="container max-w-7xl mx-auto h-full flex flex-col md:flex-row md:justify-center justify-center items-center md:items-center p-4 md:p-0">
           {/* النصوص */}
           <div className="bg-black/35 text-white rounded-md p-6 md:w-1/2 w-full mb-6 md:mb-0">
             {activeMovie ? (
