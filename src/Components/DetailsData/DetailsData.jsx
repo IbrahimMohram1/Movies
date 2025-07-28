@@ -18,6 +18,7 @@ export default function DetailsData({ type, id }) {
 
   useEffect(() => {
     dispatch(getDetails({ type, id }));
+    console.log(data);
   }, [dispatch, id]);
 
   return (
@@ -36,7 +37,9 @@ export default function DetailsData({ type, id }) {
 
           <div className="container max-w-7xl mx-auto">
             <div className="flex flex-wrap flex-col justify-start items-start p-5 w-[80%] gap-y-3">
-              <h2>{details.original_title}</h2>
+              <h2 className="text-2xl text-fuchsia-300">
+                {details.name || details.original_title}
+              </h2>
               <p>{details.overview}</p>
               <p className="text-3xl">Genres</p>
 
@@ -75,7 +78,7 @@ export default function DetailsData({ type, id }) {
                   return (
                     <SwiperSlide className="mb-12" key={item.id}>
                       <img
-                        className="w-[180px] h-[180px] rounded-full object-cover"
+                        className="w-[180px] h-[150px] rounded-full object-cover"
                         loading="lazy"
                         src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
                         alt={item.name}
@@ -109,7 +112,7 @@ export default function DetailsData({ type, id }) {
                     <SwiperSlide className="mb-12" key={item.id}>
                       <img
                         loading="lazy"
-                        className="w-[180px] h-[180px] rounded-full object-cover"
+                        className="w-[180px] h-[150px] rounded-full object-cover"
                         src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
                         alt={item.name}
                       />

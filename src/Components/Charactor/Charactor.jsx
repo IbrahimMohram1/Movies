@@ -56,7 +56,7 @@ export default function Charactor() {
                 <SwiperSlide className="mb-12">
                   <Link to={`/person/${item.id}`}>
                     <img
-                      className="w-[180px] h-[180px] rounded-full object-cover"
+                      className="w-[180px] h-[150px] rounded-full object-cover"
                       src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
                       alt={item.name}
                     />

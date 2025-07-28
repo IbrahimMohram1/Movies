@@ -30,14 +30,36 @@ export default function CharDetails() {
               />
             </div>
             <div className="md:w-1/2 w-full h-full  ">
-              <h1 className="text-3xl font-bold ">{details?.name}</h1>
+              <h1 className="text-3xl font-bold text-fuchsia-400 my-3 ">
+                {details?.name}
+              </h1>
               <p>{details?.biography}</p>
-              <p>birthDay : {details?.birthday}</p>
-              <p>Place of birth : {details?.place_of_birth}</p>
-              <p>popularity : {details?.popularity}</p>
+              <div className="flex flex-col gap-y-3">
+                <p className="mt-3">
+                  {" "}
+                  <span className="text-xl text-fuchsia-300 font-bold mr-2 ">
+                    birthDay :
+                  </span>{" "}
+                  {details?.birthday}
+                </p>
+                <p>
+                  {" "}
+                  <span className="text-xl text-fuchsia-300 font-bold mr-2 ">
+                    Place of birth :
+                  </span>{" "}
+                  {details?.place_of_birth}
+                </p>
+                <p>
+                  {" "}
+                  <span className="text-xl text-fuchsia-300 font-bold mr-2 ">
+                    popularity :{" "}
+                  </span>
+                  {details?.popularity}
+                </p>
+              </div>
             </div>
           </div>
-          <h2 className="text-3xl p-5 ">
+          <h2 className="text-3xl p-5 text-fuchsia-300">
             {details?.gender === 2 ? "His movies" : "Her movies"}
           </h2>
           <div className="flex flex-wrap justify-center items-center ">
