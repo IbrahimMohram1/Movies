@@ -18,7 +18,6 @@ export default function DetailsData({ type, id }) {
 
   useEffect(() => {
     dispatch(getDetails({ type, id }));
-    console.log(data);
   }, [dispatch, id]);
 
   return (
