@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 export default function DetailsData({ type, id }) {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ export default function DetailsData({ type, id }) {
   const isLoading = data?.isLoading;
 
   useEffect(() => {
+    console.log(data);
+
     dispatch(getDetails({ type, id }));
   }, [dispatch, id]);
 
@@ -32,7 +35,48 @@ export default function DetailsData({ type, id }) {
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`,
             }}
-          ></div>
+          >
+            <div className="container max-w-7xl mx-auto h-full">
+              <div className="flex   justify-start items-center h-full">
+                <div className="flex flex-col text-center gap-y-2  bg-black/35 py-14 px-5 rounded-md ">
+                  <h1 className="text-3xl font-bold text-white">
+                    {details.name || details.original_title}
+                  </h1>
+                  {type === "tv" ? (
+                    <div>
+                      <p>
+                        {" "}
+                        <span className="text-fuchsia-300 text-xl">
+                          First Air Date :
+                        </span>{" "}
+                        {details.first_air_date}
+                      </p>
+                      <p>
+                        {" "}
+                        <span className="text-fuchsia-300 text-xl">
+                          Last Air Date :
+                        </span>{" "}
+                        {details.last_air_date}{" "}
+                      </p>
+                    </div>
+                  ) : (
+                    <p>{details.release_date} </p>
+                  )}
+                  <p className="flex text-yellow-400 text-lg text-center mx-auto">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>
+                        {i < Math.round(details.vote_average / 2) ? (
+                          <FaStar />
+                        ) : (
+                          <FaRegStar />
+                        )}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="container max-w-7xl mx-auto">
             <div className="flex flex-wrap flex-col justify-start items-start p-5 w-[80%] gap-y-3">
