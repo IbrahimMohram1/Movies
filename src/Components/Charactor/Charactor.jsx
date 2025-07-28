@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCharactor } from "../../lib/charactorSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 export default function Charactor() {
   let dispatch = useDispatch();
@@ -11,7 +12,16 @@ export default function Charactor() {
   useEffect(() => {
     dispatch(getAllCharactor({ page: 1 }));
   }, [dispatch]);
-  let { Charactor } = useSelector((state) => state.charactor);
+  let { Charactor, isLoading } = useSelector((state) => state.charactor);
+  const [ShowLoading, setShowLoading] = useState(true);
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => {
+        setShowLoading(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   return (
     <>
@@ -35,23 +45,27 @@ export default function Charactor() {
         }}
         modules={[Autoplay]}
       >
-        {Charactor?.results?.map((item) => {
-          if (!item.profile_path) return null;
+        {ShowLoading ? (
+          <Loading />
+        ) : (
+          Charactor?.results?.map((item) => {
+            if (!item.profile_path) return null;
 
-          return (
-            <div className="flex justify-center items-center">
-              <SwiperSlide className="mb-12" key={item.id}>
-                <Link to={`/person/${item.id}`}>
-                  <img
-                    className="w-[180px] h-[180px] rounded-full object-cover"
-                    src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
-                    alt={item.name}
-                  />
-                </Link>
-              </SwiperSlide>
-            </div>
-          );
-        })}
+            return (
+              <div key={item.id} className="flex justify-center items-center">
+                <SwiperSlide className="mb-12">
+                  <Link to={`/person/${item.id}`}>
+                    <img
+                      className="w-[180px] h-[180px] rounded-full object-cover"
+                      src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
+                      alt={item.name}
+                    />
+                  </Link>
+                </SwiperSlide>
+              </div>
+            );
+          })
+        )}
       </Swiper>
     </>
   );

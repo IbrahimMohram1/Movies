@@ -8,7 +8,6 @@ export let getMoviesByGenre = createAsyncThunk('moviesByListSlice/getMoviesByGen
 
     })
     let data = await response.json()
-    console.log(data);
     
     return data
     
@@ -22,7 +21,12 @@ export let MovieByGenre = createSlice({
         builder.addCase(getMoviesByGenre.fulfilled , (state , action )=>{
             const { type } = action.meta.arg
             state[type] = action.payload.results
+                        state.isLoading = false
+
         })
+        .addCase(getMoviesByGenre.pending , (state  )=>{
+            state.isLoading = true
+            })
     }
 
     

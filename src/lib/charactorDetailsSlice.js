@@ -47,7 +47,13 @@ export let charDetails = createSlice({
     builder.addCase(getCharactorDetails.fulfilled, (state, action) => {
       state.Charactor.details = action.payload.details;
       state.Charactor.credits = action.payload.credits;
+            state.isLoading = false;
+
     });
+    builder.addCase(getCharactorDetails.pending , (state)=>{
+      state.isLoading = true;
+    })
+    
   },
 });
 

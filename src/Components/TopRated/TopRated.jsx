@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTopRated } from "../../lib/topRatedSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MediaSlider from "../MediaSlider.jsx/MediaSlider";
+import Loading from "../Loading/Loading";
 
 export default function TopRated({ type }) {
   let dispatch = useDispatch();
@@ -11,10 +12,9 @@ export default function TopRated({ type }) {
     dispatch(getTopRated());
   }, [dispatch]);
   let { topRated } = useSelector((state) => state.topRated);
+  let { isLoading } = useSelector((state) => state.topRated);
 
   return (
-    <>
-      <MediaSlider type={type} data={topRated} />
-    </>
+    <>{isLoading ? <Loading /> : <MediaSlider type={type} data={topRated} />}</>
   );
 }

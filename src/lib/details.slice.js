@@ -28,23 +28,30 @@ export let getDetails = createAsyncThunk('details/getDetails' , async ({type , i
         return { type, data, credits , similar:similar.results }; 
 
 })
-let initialState = {movie: { details: null, cast: [], crew: [] , similar:[] },
-  tv: { details: null, cast: [], crew: [], similar:[] }, isLoading:false , isError:null}
+let initialState = {movie: { details: null, cast: [], crew: [] , similar:[], isLoading:false},
+  tv: { details: null, cast: [], crew: [], similar:[] , isLoading:false },  isError:null}
 export let detailSlice = createSlice({
     name:'detailSlice',
     initialState,
     reducers:{},
     extraReducers:(builder)=>{
         builder.addCase(getDetails.fulfilled , (state , action )=>{
-             const { type, data, credits , similar} = action.payload;
+             const { type, data, credits , similar } = action.payload;
   state[type] = {
     details: data,
     cast: credits.cast,
     crew: credits.crew,
     similar: similar,
+    isLoading:false
+
 
   };
+
         })
+        .addCase(getDetails.pending , (state , action)=>{
+     const { type } = action.meta.arg;  // assuming you send `type` when dispatching getDetails
+        state[type].isLoading = true;        })
+
     }
 
     

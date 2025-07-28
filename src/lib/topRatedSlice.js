@@ -19,6 +19,12 @@ export let topRated = createSlice({
     extraReducers:(builder)=>{
         builder.addCase(getTopRated.fulfilled , (state , action )=>{
             state.topRated = action.payload.results
+                        state.isLoading = false
+
+        })
+        builder.addCase(getTopRated.pending , (state)=>{
+            state.isLoading = true
+
         })
     }
 

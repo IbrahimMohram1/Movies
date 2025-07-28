@@ -13,6 +13,7 @@ import { getMoviesByGenre } from "../../lib/moviesByListSlice";
 import ListComponent from "../ListComponent/ListComponent";
 import Charactor from "../Charactor/Charactor";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import Loading from "../Loading/Loading";
 const type = "movie"; // أو "tv" لو عايز تجرب المسلسلات
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
     (state) => state.movies[type] || { results: [] },
   );
   const allMovies = allMoviesData.results || [];
+  const isLoading = useSelector((state) => state.movies.isLoading);
 
   const [activeMovie, setActiveMovie] = useState(null);
 
@@ -36,64 +38,67 @@ export default function Home() {
 
   return (
     <>
-      <div
-        className="h-screen bg-cover bg-center transition-all duration-700"
-        style={{
-          backgroundImage: activeMovie
-            ? `url(https://image.tmdb.org/t/p/original${activeMovie.backdrop_path})`
-            : "none",
-        }}
-      >
-        <div className="container max-w-7xl mx-auto h-full flex flex-col md:flex-row md:justify-center justify-center items-center md:items-center p-4 md:p-0">
-          {/* النصوص */}
-          <div className="bg-black/35 text-white rounded-md p-6 md:w-1/2 w-full mb-6 md:mb-0">
-            {activeMovie ? (
-              <>
-                <h2 className="text-3xl font-bold">
-                  {activeMovie.original_title}
-                </h2>
-                <p className="mt-2">
-                  {activeMovie.overview?.split(" ").slice(0, 10).join(" ")}
-                </p>
-                <div className="flex justify-between flex-wrap gap-y-2 my-2">
-                  <p className="flex text-yellow-400 text-lg">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i}>
-                        {i < Math.round(activeMovie.vote_average / 2) ? (
-                          <FaStar />
-                        ) : (
-                          <FaRegStar />
-                        )}
-                      </span>
-                    ))}
+      {isLoading ? (
+        <Loading size="screen" />
+      ) : (
+        <div
+          className="h-screen bg-cover bg-center transition-all duration-700"
+          style={{
+            backgroundImage: activeMovie
+              ? `url(https://image.tmdb.org/t/p/original${activeMovie.backdrop_path})`
+              : "none",
+          }}
+        >
+          <div className="container max-w-7xl mx-auto h-full flex flex-col md:flex-row md:justify-center justify-center items-center md:items-center p-4 md:p-0">
+            {/* النصوص */}
+            <div className="bg-black/35 text-white rounded-md p-6 md:w-1/2 w-full mb-6 md:mb-0">
+              {activeMovie ? (
+                <>
+                  <h2 className="text-3xl font-bold">
+                    {activeMovie.original_title}
+                  </h2>
+                  <p className="mt-2">
+                    {activeMovie.overview?.split(" ").slice(0, 10).join(" ")}
                   </p>
-                  <p>Vote Count : {activeMovie.vote_count}</p>
-                </div>
-                <p>
-                  Original Language :{" "}
-                  <span className="text-blue-300 text-xl">
-                    {activeMovie.original_language}
-                  </span>
-                </p>
-                <Link
-                  to={`/movie/${activeMovie.id}`}
-                  className="inline-block mt-4 px-4 py-2 border rounded-md"
-                >
-                  More Info
-                </Link>
-              </>
-            ) : (
-              <h2>Loading movie...</h2>
-            )}
-          </div>
+                  <div className="flex justify-between flex-wrap gap-y-2 my-2">
+                    <p className="flex text-yellow-400 text-lg">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i}>
+                          {i < Math.round(activeMovie.vote_average / 2) ? (
+                            <FaStar />
+                          ) : (
+                            <FaRegStar />
+                          )}
+                        </span>
+                      ))}
+                    </p>
+                    <p>Vote Count : {activeMovie.vote_count}</p>
+                  </div>
+                  <p>
+                    Original Language :{" "}
+                    <span className="text-blue-300 text-xl">
+                      {activeMovie.original_language}
+                    </span>
+                  </p>
+                  <Link
+                    to={`/movie/${activeMovie.id}`}
+                    className="inline-block mt-4 px-4 py-2 border rounded-md"
+                  >
+                    More Info
+                  </Link>
+                </>
+              ) : (
+                <h2>Loading movie...</h2>
+              )}
+            </div>
 
-          {/* السلايدر */}
-          <div className="md:w-1/2 w-full h-[250px] md:h-[400px] ml-0 md:ml-16">
-            <HomeSlider movies={allMovies} setActiveMovie={setActiveMovie} />
+            {/* السلايدر */}
+            <div className="md:w-1/2 w-full h-[250px] md:h-[400px] ml-0 md:ml-16">
+              <HomeSlider movies={allMovies} setActiveMovie={setActiveMovie} />
+            </div>
           </div>
         </div>
-      </div>
-
+      )}
       <div className="container max-w-7xl mx-auto">
         <Title title="Top Rated Movies" link="/movies" />
 

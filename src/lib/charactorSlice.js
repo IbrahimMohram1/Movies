@@ -8,7 +8,6 @@ export let getAllCharactor = createAsyncThunk('charactorSlice/getAllCharactor' ,
 
     })
     let data = await response.json()
-    console.log(data);
     
     return data
     
@@ -21,6 +20,12 @@ export let Charactor = createSlice({
     extraReducers:(builder)=>{
         builder.addCase(getAllCharactor.fulfilled , (state , action )=>{
             state.Charactor = action.payload
+                        state.isLoading = false
+
+        })
+        .addCase(getAllCharactor.pending , (state)=>{
+            state.isLoading = true
+
         })
     }
 

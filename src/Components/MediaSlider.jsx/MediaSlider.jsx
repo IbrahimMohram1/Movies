@@ -27,6 +27,7 @@ export default function MediaSlider({ type, data = [] }) {
         }}
         modules={[Autoplay]}
       >
+        {}
         {data?.map((item) => {
           if (!item.poster_path) return null;
           return (

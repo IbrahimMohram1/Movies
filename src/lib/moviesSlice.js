@@ -16,12 +16,22 @@ export let movieSlice = createSlice({
     name:'movieSlice',
     initialState,
     reducers:{},
-    extraReducers:(builder)=>{
-        builder.addCase(getAllMovies.fulfilled , (state , action )=>{
-             const { type, data } = action.payload;
-  state[type] = data;
-        })
-    }
+extraReducers: (builder) => {
+  builder
+    .addCase(getAllMovies.pending, (state) => {
+      state.isLoading = true;
+      state.isError = null;
+    })
+    .addCase(getAllMovies.fulfilled, (state, action) => {
+      const { type, data } = action.payload;
+      state[type] = data;
+      state.isLoading = false;
+    })
+    .addCase(getAllMovies.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = action.error.message;
+    });
+}
 
     
 
