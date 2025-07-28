@@ -51,16 +51,16 @@ export default function Navbar() {
         >
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-gray-900 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
             <NavLink to={"/"} onClick={closeNavbar}>
-              <li className="block py-2 px-3 text-white">Home</li>
+              <li className="block py-2 px-3 ">Home</li>
             </NavLink>
             <NavLink onClick={closeNavbar} to={"/movies"}>
-              <li className="block py-2 px-3 text-white">Movies</li>
+              <li className="block py-2 px-3 ">Movies</li>
             </NavLink>
             <NavLink onClick={closeNavbar} to={"/series"}>
-              <li className="block py-2 px-3 text-white">Series</li>
+              <li className="block py-2 px-3 ">Series</li>
             </NavLink>
             <NavLink onClick={closeNavbar} to={"/charactor"}>
-              <li className="block py-2 px-3 text-white">Charactor</li>
+              <li className="block py-2 px-3 ">Charactor</li>
             </NavLink>
           </ul>
         </div>

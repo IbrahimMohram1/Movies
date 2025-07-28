@@ -46,12 +46,11 @@ export default function DetailsData({ type, id }) {
               <div className="flex flex-wrap gap-4 items-center justify-center my-2">
                 {details.genres?.length > 0 &&
                   details.genres.map((genre) => (
-                    <p
-                      key={genre.id}
-                      className="text-xs py-2 px-6 border border-fuchsia-400 rounded-lg bg-fuchsia-400 text-white"
-                    >
-                      {genre.name}
-                    </p>
+                    <div key={genre.id}>
+                      <p className="text-xs py-2 px-6 border border-fuchsia-400 rounded-lg bg-fuchsia-400 text-white">
+                        {genre.name}
+                      </p>
+                    </div>
                   ))}
               </div>
             </div>
