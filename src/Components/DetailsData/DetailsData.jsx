@@ -119,12 +119,14 @@ export default function DetailsData({ type, id }) {
 
                   return (
                     <SwiperSlide className="mb-12" key={item.id}>
-                      <img
-                        className="w-[180px] md:h-[150px] h-[180px] rounded-full object-cover"
-                        loading="lazy"
-                        src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
-                        alt={item.name}
-                      />
+                      <Link to={`/person/${item.id}`}>
+                        <img
+                          className="w-[180px] md:h-[150px] h-[180px] rounded-full object-cover"
+                          loading="lazy"
+                          src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
+                          alt={item.name}
+                        />
+                      </Link>
                     </SwiperSlide>
                   );
                 })}
@@ -152,12 +154,14 @@ export default function DetailsData({ type, id }) {
 
                   return (
                     <SwiperSlide className="mb-12" key={item.id}>
-                      <img
-                        loading="lazy"
-                        className="w-[180px] md:h-[150px] h-[180px] rounded-full object-cover"
-                        src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
-                        alt={item.name}
-                      />
+                      <Link to={`/person/${item.id}`}>
+                        <img
+                          loading="lazy"
+                          className="w-[180px] md:h-[150px] h-[180px] rounded-full object-cover"
+                          src={`https://image.tmdb.org/t/p/w780/${item.profile_path}`}
+                          alt={item.name}
+                        />
+                      </Link>
                     </SwiperSlide>
                   );
                 })}
