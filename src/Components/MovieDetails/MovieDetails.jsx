@@ -3,7 +3,7 @@ import DetailsData from "../DetailsData/DetailsData";
 import { useParams } from "react-router-dom";
 
 export default function MovieDetails() {
-      const { id } = useParams();
+  const { id } = useParams();
 
   return (
     <>
